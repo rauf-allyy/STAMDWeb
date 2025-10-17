@@ -1,11 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STAMDWeb — Home</title>
+  <meta name="description" content="STAMDWeb — sample homepage with responsive layout, hero, features and contact form." />
+  <style>
+    :root{
+      --bg:#f7fafc; --card:#ffffff; --muted:#6b7280; --accent:#2563eb;
+      --radius:12px; --max-width:1100px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:linear-gradient(180deg,#f8fafc, #eef2ff); color:#0f172a;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .container{max-width:var(--max-width); margin:0 auto; padding:24px;}
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:14px 0;
+    }
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit;}
+    .logo{
+      width:44px; height:44px; border-radius:10px; background:linear-gradient(135deg,#60a5fa,#7c3aed);
+      display:inline-grid; place-items:center; color:#fff; font-weight:700; font-size:18px;
+    }
+    nav{display:flex; gap:12px; align-items:center;}
+    nav a{color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:8px;}
+    nav a:hover{background:rgba(37,99,235,0.08); color:var(--accent)}
+    .cta{background:var(--accent); color:#fff; padding:10px 14px; border-radius:10px; text-decoration:none}
+    .hero{
+      display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:center;
+      margin:36px 0; padding:28px; background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.6));
+      border-radius:var(--radius); box-shadow:0 6px 24px rgba(2,6,23,0.06);
+    }
+    .hero h1{margin:0 0 12px; font-size:32px; line-height:1.05}
+    .hero p{margin:0 0 18px; color:var(--muted)}
+    .hero .actions{display:flex; gap:12px; flex-wrap:wrap}
+    .card{background:var(--card); padding:18px; border-radius:12px; box-shadow:0 6px 18px rgba(2,6,23,0.04)}
+    .features{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:18px}
+    .feature{padding:14px; border-radius:10px; background:linear-gradient(180deg,#fff,#fbfdff); border:1px solid rgba(2,6,23,0.04)}
+    .feature h3{margin:0 0 6px; font-size:16px}
+    .grid{
+      display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:24px;
+    }
+    footer{margin-top:36px; padding:18px 0; color:var(--muted); font-size:14px; text-align:center}
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr; text-align:center}
+      .grid{grid-template-columns:1fr}
+      .features{grid-template-columns:repeat(2,1fr)}
+      nav{display:none}
+    }
+    @media (max-width:480px){
+      .features{grid-template-columns:1fr}
+    }
+    /* small utilities */
+    .muted{color:var(--muted)}
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(96,165,250,0.12); color:#1e3a8a; font-weight:600; font-size:13px}
+    input,textarea,button{font:inherit}
+    form .row{display:flex; gap:8px}
+    form input, form textarea{
+      width:100%; padding:10px; border-radius:8px; border:1px solid #e6eef8; background:#fbfdff;
+    }
+    button.primary{background:var(--accent); color:#fff; padding:10px 14px; border-radius:8px; border:0}
+    .mobile-toggle{display:none}
+    @media (max-width:900px){ .mobile-toggle{display:inline-block} }
+  </style>
 </head>
 <body>
-    
+  <div class="container" role="main">
+    <header>
+      <a href="#" class="brand" aria-label="STAMDWeb home">
+        <span class="logo" aria-hidden="true">SW</span>
+        <div>
+          <div style="font-weight:700">STAMDWeb</div>
+          <div class="muted" style="font-size:12px">Student Admin Demo</div>
+        </div>
+      </a>
+
+      <nav aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div style="display:flex; align-items:center; gap:8px">
+        <button class="mobile-toggle" aria-expanded="false" aria-controls="mobile-menu" id="menuButton" title="Open menu">☰</button>
+        <a href="#get-started" class="cta">Get started</a>
+      </div>
+    </header>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <p class="pill" aria-hidden="true">Beta • Responsive • Accessible</p>
+        <h1 id="hero-title">Manage student data simply and securely</h1>
+        <p class="muted">Lightweight demo interface for viewing and managing student records — designed for labs, admin staff and small teams. Fast, readable, and easy to extend.</p>
+
+        <div class="actions">
+          <a href="#get-started" class="cta">Get started</a>
+          <a href="#features" style="padding:10px 14px; border-radius:8px; background:transparent; text-decoration:none; color:var(--muted); border:1px solid rgba(2,6,23,0.04)">Learn more</a>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <strong>Quick overview</strong>
+            <p class="muted" style="margin:8px 0 0; font-size:14px">View recent activity, search records, and jump to common tasks.</p>
+          </div>
+          <div class="card">
+            <strong>Secure by default</strong>
+            <p class="muted" style="margin:8px 0 0; font-size:14px">Built with minimal surface area and clear extension points for auth and validation.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card" aria-label="Sign up panel">
+        <h3 style="margin-top:0">Quick start</h3>
+        <p class="muted" style="font-size:14px">Create a demo account and explore the interface.</p>
+        <form id="signup" style="margin-top:12px" onsubmit="event.preventDefault(); alert('Demo sign up — replace with real logic')">
+          <label for="email" class="muted" style="font-size:13px">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" required />
+          <div style="height:12px"></div>
+          <button class="primary" type="submit">Create demo account</button>
+        </form>
+      </aside>
+    </section>
+
+    <section id="features" aria-labelledby="features-title">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px">
+        <h2 id="features-title">Features</h2>
+        <p class="muted" style="margin:0">Small, focused features for common admin tasks</p>
+      </div>
+
+      <div class="features" role="list">
+        <div class="feature" role="listitem">
+          <h3>Search & Filter</h3>
+          <p class="muted">Quickly find students, filter by program, year or status.</p>
+        </div>
+        <div class="feature" role="listitem">
+          <h3>Record View</h3>
+          <p class="muted">Clean, printable student records and activity logs.</p>
+        </div>
+        <div class="feature" role="listitem">
+          <h3>Export & Reports</h3>
+          <p class="muted">Export CSVs for reporting and backups.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" style="margin-top:26px">
+      <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap">
+        <div style="flex:1; min-width:220px">
+          <h2 style="margin-top:0">About this demo</h2>
+          <p class="muted">This repo demonstrates a minimal web UI for student administration tasks. It's intended as a starting point — integrate your backend, add authentication and validation to make it production-ready.</p>
+        </div>
+        <div style="min-width:260px">
+          <div class="card">
+            <strong>Tech</strong>
+            <p class="muted" style="margin:6px 0 0">HTML, CSS, small JS for interactions. No frameworks required.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:28px">
+      <h2 style="margin-top:0">Contact</h2>
+      <div style="display:flex; gap:16px; flex-wrap:wrap">
+        <form class="card" style="flex:1; min-width:280px" onsubmit="event.preventDefault(); alert('Thanks — demo contact received')">
+          <label for="name" class="muted" style="font-size:13px">Name</label>
+          <input id="name" type="text" placeholder="Your name" required />
+          <div style="height:8px"></div>
+          <label for="message" class="muted" style="font-size:13px">Message</label>
+          <textarea id="message" rows="4" placeholder="How can we help?" required></textarea>
+          <div style="height:12px"></div>
+          <button class="primary" type="submit">Send message</button>
+        </form>
+
+        <div style="min-width:220px">
+          <div class="card">
+            <strong>Support</strong>
+            <p class="muted" style="margin:6px 0 0">Email: support@example.local</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="muted">© <span id="year"></span> STAMDWeb. This is a demo page.</div>
+    </footer>
+  </div>
+
+  <script>
+    // small interactive helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // mobile menu toggle (simple)
+    const menuBtn = document.getElementById('menuButton');
+    if(menuBtn){
+      menuBtn.addEventListener('click', () => {
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!expanded));
+        alert('Mobile menu demo — implement navigation for smaller screens');
+      });
+    }
+
+    // smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+  </script>
 </body>
 </html>
